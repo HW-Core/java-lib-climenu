@@ -3,7 +3,7 @@
  * GNU General Public License version 3; see www.hyperweb2.com/terms/
  */
 
-package Hw2.Java.library.climenu;
+package hw2.java.library.climenu;
 
 import java.util.concurrent.Callable;
 

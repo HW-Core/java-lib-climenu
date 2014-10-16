@@ -24,9 +24,9 @@ public class JTextConsole {
      * Console.
      *
      * @param output the output
-     * @param input the input
+     * @param input the input ( can be null )
      * @param out the out
-     * @param in the in
+     * @param in the in ( can be null )
      */
     public static void console(final JTextArea output, final JTextComponent input, final InputStream out, final PrintWriter in) {
         // handle "System.out"
@@ -48,22 +48,24 @@ public class JTextConsole {
             }
         }.execute();
 
-        // handle "System.in"
-        input.addKeyListener(new KeyAdapter() {
-            private StringBuffer line = new StringBuffer();
+        if (input!=null) {
+            // handle "System.in"
+            input.addKeyListener(new KeyAdapter() {
+                private StringBuffer line = new StringBuffer();
 
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (c == KeyEvent.VK_ENTER) {
-                    in.println(line);
-                    line.setLength(0);
-                } else if (c == KeyEvent.VK_BACK_SPACE) {
-                    line.setLength(line.length() - 1);
-                } else if (!Character.isISOControl(c)) {
-                    line.append(e.getKeyChar());
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char c = e.getKeyChar();
+                    if (c == KeyEvent.VK_ENTER) {
+                        in.println(line);
+                        line.setLength(0);
+                    } else if (c == KeyEvent.VK_BACK_SPACE) {
+                        line.setLength(line.length() - 1);
+                    } else if (!Character.isISOControl(c)) {
+                        line.append(e.getKeyChar());
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

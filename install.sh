@@ -12,7 +12,3 @@ VENDOR="hw-core"
 #
 
 Joiner:add_repo "https://github.com/HW-Core/java-lib-common.git"      "java-lib-common"          "master" "$VENDOR"
-
-if Joiner:with_dev ; then
-    # nothing to do for now
-fi
